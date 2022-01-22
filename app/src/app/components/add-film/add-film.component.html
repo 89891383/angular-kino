@@ -1,0 +1,60 @@
+<div class="AddFilm">
+  <form (ngSubmit)="onSubmit()" #f="ngForm">
+    <a routerLink="/films"><fa-icon [icon]="faArrowLeft"></fa-icon></a>
+    <h2>Dodaj film:</h2>
+
+    <label for="title">Tytuł:</label>
+    <input type="text" name="title" ngModel required #title="ngModel" />
+    <app-error
+      *ngIf="!title.valid && title.touched && title.errors.required"
+      [errorMessage]="'Pole tytuł nie może być puste!'"
+    ></app-error>
+
+    <label for="duration">Czas trwania:</label>
+    <input
+      type="number"
+      name="duration"
+      appFilmDurationValidator
+      ngModel
+      required
+      #duration="ngModel"
+    />
+    <app-error
+      *ngIf="!duration.valid && duration.touched && duration.errors.required"
+      [errorMessage]="'Pole czas trwania nie może być puste!'"
+    ></app-error>
+    <app-error
+      *ngIf="
+        !duration.valid &&
+        duration.touched &&
+        duration.errors?.filmDurationValidator
+      "
+      [errorMessage]="
+        'Wartość pola czas trwania musi być z przedziału od 1 do 300!'
+      "
+    ></app-error>
+
+    <label for="url">Adres url plakatu:</label>
+    <input
+      type="text"
+      name="url"
+      ngModel
+      pattern="(https?:\/\/.*\.(?:png|jpg))"
+      required
+      #url="ngModel"
+    />
+    <app-error
+      *ngIf="!url.valid && url.touched && url.errors.required"
+      [errorMessage]="'Pole adres url nie może być puste!'"
+    ></app-error>
+    <app-error
+      *ngIf="!url.valid && url.touched && url.errors.pattern"
+      [errorMessage]="
+        'Wartość pola adres url musi prowadzić do zasobu, który jest obrazem'
+      "
+    ></app-error>
+
+    <!-- <button onClick={addFilmToFilmList}>Dodaj</button> -->
+    <button type="submit" [disabled]="!f.valid">Dodaj</button>
+  </form>
+</div>

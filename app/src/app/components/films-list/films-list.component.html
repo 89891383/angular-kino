@@ -1,0 +1,12 @@
+<div class="FilmList">
+  <div class="addFilmButton">
+    <a routerLink="/addFilm"><fa-icon [icon]="faPlusSquare"></fa-icon></a>
+  </div>
+  <div class="films">
+    <app-film
+      *ngFor="let film of films"
+      [film]="film"
+      (onDeleteFilm)="onDeleteFilm($event)"
+    ></app-film>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<nav class="Navbar">
+  <ul>
+    <li>
+      <a
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="active"
+        routerLink="/"
+        >Kasa</a
+      >
+      <!-- <NavLink to="/" exact>
+              Kasa
+          </NavLink> -->
+    </li>
+    <li>
+      <a routerLinkActive="active" routerLink="/showings">Seanse</a>
+      <!-- <NavLink to="/showings">Seanse</NavLink> -->
+    </li>
+    <li>
+      <a routerLinkActive="active" routerLink="/films">Filmy</a>
+      <!-- <NavLink to="/films">Filmy</NavLink> -->
+    </li>
+  </ul>
+</nav>

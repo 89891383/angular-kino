@@ -1,0 +1,38 @@
+.Navbar {
+  display: flex;
+  justify-content: flex-end;
+  height: 10vh;
+  background-color: #061152;
+}
+
+.Navbar ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 40%;
+  list-style-type: none;
+}
+
+.Navbar ul li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Navbar ul li a {
+  padding: 12px 20px;
+  border-bottom: 2px solid transparent;
+  text-decoration: none;
+  color: #bbb;
+  font-size: 20px;
+  letter-spacing: 1.5px;
+  transition: 0.2s;
+}
+
+.Navbar ul li a.active {
+  color: white;
+}
+
+.Navbar ul li a:hover {
+  color: white;
+}

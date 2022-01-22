@@ -1,0 +1,118 @@
+.FilmList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.FilmList .films {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  list-style-type: none;
+}
+
+.FilmList .addFilmButton {
+  margin: 10px 0;
+  height: 3vh;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  background-color: #eee;
+  border-radius: 10px;
+}
+
+.FilmList .addFilmButton a {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ddd;
+  border-radius: 10px;
+  font-size: 14px;
+  color: white;
+  border: 1px solid #ccc;
+}
+
+.FilmList .addFilmButton a:hover {
+  background-color: #ccc;
+}
+
+/* do usuniecia */
+
+.Film {
+  display: flex;
+  margin: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.Film .imageHolder {
+  width: 10%;
+}
+
+.Film .descriptionHolder {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 10px 25px;
+}
+
+.Film .descriptionHolder h2 {
+  flex-direction: column;
+}
+
+.Film .buttonsHolder {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+  padding: 10px 25px;
+}
+
+.Film .buttonsHolder .holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Film .buttonsHolder button {
+  margin: 10px 0;
+  width: 2vw;
+  height: 2vw;
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 20px;
+  transition: 0.2s;
+}
+
+.Film .buttonsHolder button:hover {
+  color: red;
+}
+
+.Film .buttonsHolder a {
+  margin: 10px 0;
+  width: 2vw;
+  height: 2vw;
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  text-align: center;
+  font-size: 20px;
+  transition: 0.2s;
+}
+
+.Film .buttonsHolder a:hover {
+  color: blue;
+}
+
+.Film div img {
+  width: 100%;
+}
+
+/* koniec do usuniecia */

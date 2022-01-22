@@ -1,0 +1,21 @@
+<div class="Film">
+  <div class="imageHolder">
+    <img src="{{ film.imageUrl }}" alt="" />
+  </div>
+  <div class="descriptionHolder">
+    <h2>{{ film.title }}</h2>
+    <p>
+      Czas trwania: <b>{{ film.duration }}</b>
+    </p>
+  </div>
+  <div class="buttonsHolder">
+    <div class="holder">
+      <a routerLink="/editFilm/{{ film.id }}"
+        ><fa-icon [icon]="faEdit"></fa-icon
+      ></a>
+      <button (click)="deleteFilm(film.id)">
+        <fa-icon [icon]="faTrash"></fa-icon>
+      </button>
+    </div>
+  </div>
+</div>
