@@ -1,0 +1,89 @@
+.BuyTicket {
+  display: flex;
+  justify-content: center;
+}
+
+.BuyTicket > div {
+  margin: 100px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  padding: 25px 40px;
+  background-color: #eee;
+  box-shadow: 3px 3px 10px #666;
+  border-radius: 10px;
+}
+
+.BuyTicket > div > a {
+  color: black;
+  font-size: 30px;
+}
+
+.BuyTicket h2 {
+  text-align: center;
+  padding: 0 0 30px;
+}
+
+.BuyTicket div input {
+  display: flex;
+  margin: 5px 0 10px;
+}
+
+.BuyTicket div .cinemaHall {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 20px 10px;
+  border: 1px solid black;
+  margin: 20px 0;
+}
+
+.BuyTicket div .cinemaHall .row {
+  display: flex;
+  justify-content: space-around;
+  margin: 5px 0;
+}
+
+.BuyTicket div .cinemaHall .row .place {
+  padding: 8px 15px;
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}
+
+.BuyTicket div .cinemaHall .row .place:hover {
+  background-color: cornflowerblue;
+}
+
+.BuyTicket div .cinemaHall .row .X {
+  padding: 8px 15px;
+  border: 1px solid red;
+  background-color: red;
+  cursor: default;
+  pointer-events: none;
+}
+
+.BuyTicket div .cinemaHall .row .clicked {
+  padding: 8px 15px;
+  border: 1px solid goldenrod;
+  background-color: #172263;
+  cursor: default;
+}
+
+.BuyTicket div button {
+  border-radius: 10px;
+  margin: 10px 0;
+  width: 100%;
+  background-color: #172263;
+  font-size: 18px;
+  color: white;
+  letter-spacing: 1px;
+  padding: 10px 10px;
+}
+
+.BuyTicket div button:hover {
+  cursor: pointer;
+  background-color: #061152;
+}

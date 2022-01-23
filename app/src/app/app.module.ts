@@ -18,6 +18,7 @@ import { FilmDurationValidatorDirective } from './directives/film-duration-valid
 import { EditFilmComponent } from './components/edit-film/edit-film.component';
 import { ShowingComponent } from './components/showing/showing.component';
 import { AddShowingComponent } from './components/add-showing/add-showing.component';
+import { BuyTicketComponent } from './components/buy-ticket/buy-ticket.component';
 
 const appRoutes: Routes = [
   {
@@ -44,6 +45,14 @@ const appRoutes: Routes = [
     path: 'editFilm/:id',
     component: EditFilmComponent,
   },
+  {
+    path: 'buyTicket/:id',
+    component: BuyTicketComponent,
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+  },
 ];
 
 @NgModule({
@@ -60,6 +69,7 @@ const appRoutes: Routes = [
     EditFilmComponent,
     ShowingComponent,
     AddShowingComponent,
+    BuyTicketComponent,
   ],
   imports: [
     BrowserModule,
