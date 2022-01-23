@@ -1,1 +1,9 @@
-<p>showings-list works!</p>
+<div class="ShowingsList">
+  <div class="addShowingButton">
+    <!-- <a routerLink="/addShowing"><fa-icon [icon]="faPlusSquare"></fa-icon></a> -->
+  </div>
+  <div class="showings">
+    <app-showing *ngFor="let showing of showings" [showing]="showing"></app-showing>
+    <!--^to bylo w appie (onDeleteFilm)="onDeleteFilm($event)" -->
+  </div>
+</div>

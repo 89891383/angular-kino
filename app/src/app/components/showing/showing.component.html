@@ -1,0 +1,34 @@
+<div class="Showing">
+  <app-film [film]="film"></app-film>
+  <div class="showingHours">
+    <!-- {film.showings.map((showing) => (
+            <p key={Math.random()}>
+                {destination === "Checkout" ? (
+                    <Link
+                        to={{
+                            pathname: `/buyTicket`,
+                            state: {
+                                showingId: showing.showingId,
+                                filmId: film.id,
+                            },
+                        }}
+                    >
+                        {showing.hour}
+                    </Link>
+                ) : (
+                    <Link
+                        to={{
+                            pathname: `/editShowing`,
+                            state: {
+                                showingId: showing.showingId,
+                                filmId: film.id,
+                            },
+                        }}
+                    >
+                        {showing.hour}
+                    </Link>
+                )}
+            </p>
+        ))} -->
+  </div>
+</div>

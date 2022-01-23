@@ -16,6 +16,7 @@ import { AddFilmComponent } from './components/add-film/add-film.component';
 import { ErrorComponent } from './components/error/error.component';
 import { FilmDurationValidatorDirective } from './directives/film-duration-validator.directive';
 import { EditFilmComponent } from './components/edit-film/edit-film.component';
+import { ShowingComponent } from './components/showing/showing.component';
 
 const appRoutes: Routes = [
   {
@@ -52,6 +53,7 @@ const appRoutes: Routes = [
     ErrorComponent,
     FilmDurationValidatorDirective,
     EditFilmComponent,
+    ShowingComponent,
   ],
   imports: [
     BrowserModule,

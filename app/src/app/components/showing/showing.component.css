@@ -1,0 +1,21 @@
+.Showing {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Showing .Film {
+  flex-grow: 2;
+}
+
+.Showing .Film div.buttonsHolder {
+  display: none;
+}
+
+.Showing .showingHours {
+  flex-grow: 2;
+  display: flex;
+  flex-wrap: wrap;
+}
+.showingHours p {
+  padding: 0.2rem;
+}

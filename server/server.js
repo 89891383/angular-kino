@@ -9,177 +9,178 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(
-    bodyParser.urlencoded({
-        extended: true,
-    })
+  bodyParser.urlencoded({
+    extended: true,
+  })
 );
 
 app.get("/films", (req, res) => {
-    fs.readFile("./cinema.json", "utf8", (err, cinemaJson) => {
-        if (err) {
-            console.log("File read failed in GET /films: " + err);
-            res.status(500).send("File read failed");
-            return;
-        }
-        console.log("GET: /films");
+  fs.readFile("./cinema.json", "utf8", (err, cinemaJson) => {
+    if (err) {
+      console.log("File read failed in GET /films: " + err);
+      res.status(500).send("File read failed");
+      return;
+    }
+    console.log("GET: /films");
 
-        var cinemaData = JSON.parse(cinemaJson);
-        var films = cinemaData.films;
-        var filmsJson = JSON.stringify(films);
+    var cinemaData = JSON.parse(cinemaJson);
+    var films = cinemaData.films;
+    var filmsJson = JSON.stringify(films);
 
-        res.send(filmsJson);
-    });
+    res.send(filmsJson);
+  });
 });
 
 app.get("/films/:id", (req, res) => {
-    fs.readFile("./cinema.json", "utf8", (err, cinemaJson) => {
-        if (err) {
-            console.log(
-                "File read failed in GET /films/" + req.params.id + " + err"
-            );
-            res.status(500).send("File read failed");
-            return;
-        }
-        var cinema = JSON.parse(cinemaJson);
+  fs.readFile("./cinema.json", "utf8", (err, cinemaJson) => {
+    if (err) {
+      console.log("File read failed in GET /films/" + req.params.id + " + err");
+      res.status(500).send("File read failed");
+      return;
+    }
+    var cinema = JSON.parse(cinemaJson);
 
-        var filmIndex = cinema.films.findIndex(
-            (filmTmp) => filmTmp.id == req.params.id
-        );
-        if (filmIndex != -1) {
-            res.send(cinema.films[filmIndex]);
-        } else {
-            console.log("Film by id = " + req.params.id + " does not exists");
-            res.status(500).send(
-                "Film by id = " + req.params.id + " does not exists"
-            );
-            return;
-        }
-    });
+    var filmIndex = cinema.films.findIndex(
+      (filmTmp) => filmTmp.id == req.params.id
+    );
+    if (filmIndex != -1) {
+      res.send(cinema.films[filmIndex]);
+    } else {
+      console.log("Film by id = " + req.params.id + " does not exists");
+      res
+        .status(500)
+        .send("Film by id = " + req.params.id + " does not exists");
+      return;
+    }
+  });
 });
 
 app.put("/films/:id", (req, res) => {
-    fs.readFile("./cinema.json", "utf8", (err, cinemaJson) => {
-        if (err) {
-            console.log(
-                "File read failed in GET /films/" + req.params.id + " + err"
-            );
-            res.status(500).send("File read failed");
-            return;
-        }
+  fs.readFile("./cinema.json", "utf8", (err, cinemaJson) => {
+    if (err) {
+      console.log("File read failed in GET /films/" + req.params.id + " + err");
+      res.status(500).send("File read failed");
+      return;
+    }
 
-        var cinema = JSON.parse(cinemaJson);
+    var cinema = JSON.parse(cinemaJson);
 
-        var elementIndexInArray = -1;
+    var elementIndexInArray = -1;
 
-        var filmIndex = cinema.films.findIndex((filmTmp, index) => {
-            if (filmTmp.id == req.body.id) elementIndexInArray = index;
-            return filmTmp.id == req.body.id;
-        });
-
-        if (filmIndex != -1) {
-            cinema.films[elementIndexInArray] = { ...req.body };
-            var newList = JSON.stringify(cinema);
-            fs.writeFile("./cinema.json", newList, (err) => {
-                if (err) {
-                    console.log(
-                        "Error writing file in PUT /films/" +
-                            req.params.id +
-                            ": " +
-                            err
-                    );
-                    res.status(500).send("Error writing file cinema.json");
-                } else {
-                    res.status(204).send(cinema.films[filmIndex]);
-                    console.log(
-                        "Successfully edited film with id = " + req.params.id
-                    );
-                }
-            });
-        } else {
-            console.log("Film by id = " + req.params.id + " does not exists");
-            res.status(500).send(
-                "Film by id = " + req.params.id + " does not exists"
-            );
-            return;
-        }
+    var filmIndex = cinema.films.findIndex((filmTmp, index) => {
+      if (filmTmp.id == req.body.id) elementIndexInArray = index;
+      return filmTmp.id == req.body.id;
     });
+
+    if (filmIndex != -1) {
+      cinema.films[elementIndexInArray] = { ...req.body };
+      var newList = JSON.stringify(cinema);
+      fs.writeFile("./cinema.json", newList, (err) => {
+        if (err) {
+          console.log(
+            "Error writing file in PUT /films/" + req.params.id + ": " + err
+          );
+          res.status(500).send("Error writing file cinema.json");
+        } else {
+          res.status(204).send(cinema.films[filmIndex]);
+          console.log("Successfully edited film with id = " + req.params.id);
+        }
+      });
+    } else {
+      console.log("Film by id = " + req.params.id + " does not exists");
+      res
+        .status(500)
+        .send("Film by id = " + req.params.id + " does not exists");
+      return;
+    }
+  });
 });
 
 app.delete("/films/:id", (req, res) => {
-    fs.readFile("./cinema.json", "utf8", (err, cinemaJson) => {
-        if (err) {
-            console.log("File read failed in DELETE /films: " + err);
-            res.status(500).send("File read failed");
-            return;
-        }
-        var cinema = JSON.parse(cinemaJson);
+  fs.readFile("./cinema.json", "utf8", (err, cinemaJson) => {
+    if (err) {
+      console.log("File read failed in DELETE /films: " + err);
+      res.status(500).send("File read failed");
+      return;
+    }
+    var cinema = JSON.parse(cinemaJson);
 
-        var filmIndex = cinema.films.findIndex(
-            (filmTmp) => filmTmp.id == req.params.id
-        );
-        if (filmIndex != -1) {
-            cinema.films.splice(filmIndex, 1);
-            var newList = JSON.stringify(cinema);
-            fs.writeFile("./cinema.json", newList, (err) => {
-                if (err) {
-                    console.log(
-                        "Error writing file in DELETE /films/" +
-                            req.params.id +
-                            ": " +
-                            err
-                    );
-                    res.status(500).send("Error writing file cinema.json");
-                } else {
-                    res.status(204).send();
-                    console.log(
-                        "Successfully deleted film with id = " + req.params.id
-                    );
-                }
-            });
+    var filmIndex = cinema.films.findIndex(
+      (filmTmp) => filmTmp.id == req.params.id
+    );
+    if (filmIndex != -1) {
+      cinema.films.splice(filmIndex, 1);
+      var newList = JSON.stringify(cinema);
+      fs.writeFile("./cinema.json", newList, (err) => {
+        if (err) {
+          console.log(
+            "Error writing file in DELETE /films/" + req.params.id + ": " + err
+          );
+          res.status(500).send("Error writing file cinema.json");
         } else {
-            console.log("Film by id = " + req.params.id + " does not exists");
-            res.status(500).send(
-                "Film by id = " + req.params.id + " does not exists"
-            );
-            return;
+          res.status(204).send();
+          console.log("Successfully deleted film with id = " + req.params.id);
         }
-    });
+      });
+    } else {
+      console.log("Film by id = " + req.params.id + " does not exists");
+      res
+        .status(500)
+        .send("Film by id = " + req.params.id + " does not exists");
+      return;
+    }
+  });
 });
 
 app.post("/films", (req, res) => {
-    fs.readFile("./cinema.json", "utf8", (err, cinemaJson) => {
+  fs.readFile("./cinema.json", "utf8", (err, cinemaJson) => {
+    if (err) {
+      console.log("File read failed in POST /films: " + err);
+      res.status(500).send("File read failed");
+      return;
+    }
+    var cinema = JSON.parse(cinemaJson);
+    var element = cinema.films.find(
+      (elementTmp) => elementTmp.id == req.body.id
+    );
+    if (!element) {
+      cinema.films.push(req.body);
+      var newList = JSON.stringify(cinema);
+      fs.writeFile("./cinema.json", newList, (err) => {
         if (err) {
-            console.log("File read failed in POST /films: " + err);
-            res.status(500).send("File read failed");
-            return;
-        }
-        var cinema = JSON.parse(cinemaJson);
-        var element = cinema.films.find(
-            (elementTmp) => elementTmp.id == req.body.id
-        );
-        if (!element) {
-            cinema.films.push(req.body);
-            var newList = JSON.stringify(cinema);
-            fs.writeFile("./cinema.json", newList, (err) => {
-                if (err) {
-                    console.log("Error writing file in POST /films: " + err);
-                    res.status(500).send("Error writing file cinema.json");
-                } else {
-                    res.status(201).send(req.body);
-                    console.log(
-                        "Successfully wrote file cinema.json and added new element with id = " +
-                            req.body.id
-                    );
-                }
-            });
+          console.log("Error writing file in POST /films: " + err);
+          res.status(500).send("Error writing file cinema.json");
         } else {
-            console.log("Film by id = " + req.body.id + " already exists");
-            res.status(500).send(
-                "Film by id = " + req.body.id + " already exists"
-            );
-            return;
+          res.status(201).send(req.body);
+          console.log(
+            "Successfully wrote file cinema.json and added new element with id = " +
+              req.body.id
+          );
         }
-    });
+      });
+    } else {
+      console.log("Film by id = " + req.body.id + " already exists");
+      res.status(500).send("Film by id = " + req.body.id + " already exists");
+      return;
+    }
+  });
+});
+
+app.get("/showings", (req, res) => {
+  fs.readFile("./cinema.json", "utf8", (err, cinemaJson) => {
+    if (err) {
+      console.log("File read failed in GET /showings: " + err);
+      res.status(500).send("File read failed");
+      return;
+    }
+    console.log("GET: /showings");
+
+    var cinemaData = JSON.parse(cinemaJson);
+    var showings = cinemaData.showings;
+    var showingsJson = JSON.stringify(showings);
+
+    res.send(showingsJson);
+  });
 });
 
 app.listen(4201, () => console.log("Server STARTED!"));

@@ -1,1 +1,42 @@
-{"films":[{"id":2,"title":"Gdzie jest nemo?","duration":140,"imageUrl":"https://assets.upflix.pl/media/plakat/2003/finding-nemo__300_427.jpg"},{"id":3,"title":"Helikopter w Ogniu","duration":90,"imageUrl":"https://image.ceneostatic.pl/data/products/121397/i-helikopter-w-ogniu-black-hawk-down-dvd.jpg"}]}
+{
+  "films": [
+    {
+      "id": 2,
+      "title": "Gdzie jest nemo?",
+      "duration": 140,
+      "imageUrl": "https://assets.upflix.pl/media/plakat/2003/finding-nemo__300_427.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Helikopter w Ogniu",
+      "duration": 90,
+      "imageUrl": "https://image.ceneostatic.pl/data/products/121397/i-helikopter-w-ogniu-black-hawk-down-dvd.jpg"
+    }
+  ],
+  "showings": [
+    {
+      "id": 115,
+      "filmId": 2,
+      "date": "2022-01-23",
+      "hour": "12:00",
+      "occupiedSeats": [],
+      "cinemaHallId": 115
+    },
+    {
+      "id": 153,
+      "filmId": 3,
+      "date": "2022-01-23",
+      "hour": "15:00",
+      "occupiedSeats": [],
+      "cinemaHallId": 115
+    },
+    {
+      "id": 123,
+      "filmId": 2,
+      "date": "2022-01-23",
+      "hour": "15:00",
+      "occupiedSeats": [],
+      "cinemaHallId": 115
+    }
+  ]
+}
