@@ -10,9 +10,9 @@
   </div>
   <div class="buttonsHolder">
     <div class="holder">
-      <a routerLink="/editFilm/{{ film.id }}"
-        ><fa-icon [icon]="faEdit"></fa-icon
-      ></a>
+      <a routerLink="/editFilm/{{ film.id }}">
+        <fa-icon [icon]="faEdit"></fa-icon>
+      </a>
       <button (click)="deleteFilm(film.id)">
         <fa-icon [icon]="faTrash"></fa-icon>
       </button>

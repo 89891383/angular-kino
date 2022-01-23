@@ -16,33 +16,33 @@ export class FilmsListComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.getFilms();
+    this.getData();
   }
 
   onDeleteFilm(filmId: number) {
     this.http
-      .delete(`http://localhost:4201/films/${filmId}`)
+      .delete(`http://localhost:4201/orders/${filmId}`)
       .subscribe((response) => {
-        this.getFilms();
+        this.getData();
       });
   }
 
-  getFilms() {
+  getData() {
     this.http
-      .get('http://localhost:4201/films')
+      .get('http://localhost:4201/orders')
       .pipe(
         map((responseData) => {
-          const filmsArray = [];
+          const dataArray = [];
 
           for (let key in responseData) {
-            filmsArray.push({ ...responseData[key] });
+            dataArray.push({ ...responseData[key] });
           }
 
-          return filmsArray;
+          return dataArray;
         })
       )
-      .subscribe((filmsArray) => {
-        this.films = filmsArray.map((film) => film);
+      .subscribe((dataArray) => {
+        this.films = dataArray.map((data) => data);
       });
   }
 }

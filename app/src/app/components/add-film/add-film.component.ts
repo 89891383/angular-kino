@@ -20,11 +20,12 @@ export class AddFilmComponent implements OnInit {
 
   onSubmit() {
     this.http
-      .post('http://localhost:4201/films', {
+      .post('http://localhost:4201/orders', {
         id: Math.floor(Math.random() * (100000000 - 10)) + 10,
         title: this.addFilmForm.value.title,
         duration: this.addFilmForm.value.duration,
         imageUrl: this.addFilmForm.value.url,
+        showings: [],
       })
       .subscribe(() => {
         this.addFilmForm.reset();

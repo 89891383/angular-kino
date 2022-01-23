@@ -11,14 +11,7 @@ import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 })
 export class ShowingsListComponent implements OnInit {
   faPlusSquare = faPlusSquare;
-  showings = [];
-  showings2 = [
-    {
-      filmId: '',
-      hours: [],
-    },
-  ];
-  loaded = false;
+  dataArray = [];
 
   constructor(private http: HttpClient) {}
 
@@ -28,7 +21,7 @@ export class ShowingsListComponent implements OnInit {
 
   getShowings() {
     this.http
-      .get('http://localhost:4201/showings')
+      .get('http://localhost:4201/orders')
       .pipe(
         map((responseData) => {
           const showingsArray = [];
@@ -40,20 +33,8 @@ export class ShowingsListComponent implements OnInit {
           return showingsArray;
         })
       )
-      .subscribe((showingsArray) => {
-        this.showings = showingsArray.map((showing) => showing);
-        console.log(showingsArray);
-        //   this.showings2 = this.showings.reduce(
-        //     (previousValue, showing, curr, array) => {
-        //       console.log(showing.filmId);
-        //       console.log(array);
-        //       if (!array.includes(showing.filmId)) {
-        //         console.log(showing);
-        //         //array.push({ filmId: showing.filmId, hours: [] });
-        //         return { filmId: showing.filmId, hours: [] };
-        //       }
-        //     }
-        //   );
+      .subscribe((dataArray) => {
+        this.dataArray = dataArray;
       });
   }
 }

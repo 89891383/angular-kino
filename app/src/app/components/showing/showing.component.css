@@ -1,10 +1,6 @@
 .Showing {
   display: flex;
-  justify-content: space-between;
-}
-
-.Showing .Film {
-  flex-grow: 2;
+  width: 100%;
 }
 
 .Showing .Film div.buttonsHolder {
@@ -12,10 +8,9 @@
 }
 
 .Showing .showingHours {
-  flex-grow: 2;
-  display: flex;
   flex-wrap: wrap;
+  width: 20%;
 }
-.showingHours p {
+.showingHours a {
   padding: 0.2rem;
 }

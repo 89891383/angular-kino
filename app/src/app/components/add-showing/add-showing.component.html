@@ -1,0 +1,33 @@
+<div class="AddShowing">
+  <form (ngSubmit)="onSubmit()" #f="ngForm">
+    <a routerLink="/showings">
+      <fa-icon [icon]="faArrowLeft"></fa-icon>
+    </a>
+    <h2>Dodaj seans:</h2>
+
+    <label for="title">Film:</label>
+    <select name="title" ngModel #title="ngModel">
+      <option value="" disabled>Wybierz film</option>
+      <option *ngFor="let film of films" [ngValue]="film">
+        {{ film.title }}
+      </option>
+    </select>
+
+    <label for="cinemaHall">Sale:</label>
+    <select name="cinemaHall" ngModel #cinemaHall="ngModel">
+      <option value="" disabled>Wybierz salę</option>
+      <option *ngFor="let cinemaHall of cinemaHalls" [ngValue]="cinemaHall">
+        {{ cinemaHall.hallId }}
+      </option>
+    </select>
+
+    <label for="date">Data:</label>
+    <input type="date" name="date" ngModel required #date="ngModel" />
+
+    <label for="hour">Godzina:</label>
+    <input type="time" name="hour" ngModel required #hour="ngModel" />
+
+    <button type="submit" [disabled]="!f.valid">Dodaj</button>
+
+  </form>
+</div>

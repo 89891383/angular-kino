@@ -9,34 +9,41 @@ import { map } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
 })
 export class ShowingComponent implements OnInit {
-  @Input() showing: {
-    filmId: number;
-    date: string;
-    hour: string;
-    occupiedSeats: string;
-    cinemaHallId: number;
+  @Input() data: {
+    id: number;
+    title: string;
+    duration: string;
+    imageUrl: string;
+    showings: any;
   };
+
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.getFilm(this.showing.filmId);
+    this.getFilm();
+    this.getHours();
   }
 
   film = {};
-  hours = {};
+  showingsOfThisFilm = [];
 
-  getFilm(id: number) {
-    this.http
-      .get(`http://localhost:4201/films/${id}`)
-      .pipe(
-        map((responseData) => {
-          const film = { ...responseData };
-          return film;
-        })
-      )
-      .subscribe((film) => {
-        this.film = { ...film };
-        console.log(this.film);
-      });
+  getFilm() {
+    this.data.showings.map((showing: object) => {
+      if (showing['id'] === this.data.id) {
+        this.showingsOfThisFilm.push(showing);
+      }
+    });
+    this.film = {
+      id: this.data.id,
+      title: this.data.title,
+      duration: this.data.duration,
+      imageUrl: this.data.imageUrl,
+    };
+  }
+
+  getHours() {
+    this.data.showings.map((showing: object) => {
+      this.showingsOfThisFilm.push(showing);
+    });
   }
 }
