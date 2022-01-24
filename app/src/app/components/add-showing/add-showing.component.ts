@@ -193,17 +193,6 @@ export class AddShowingComponent implements OnInit {
     },
   ];
 
-  // findInvalidControls() {
-  //   const invalid = [];
-  //   const controls = this.addShowingForm.controls;
-  //   for (const name in controls) {
-  //     if (controls[name].invalid) {
-  //       invalid.push(name);
-  //     }
-  //   }
-  //   return invalid;
-  // }
-
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
@@ -230,9 +219,7 @@ export class AddShowingComponent implements OnInit {
   }
 
   onSubmit() {
-    const selectedFilm = this.films.find(
-      (film) => film.title == this.addShowingForm.value.title['title']
-    );
+    const selectedFilm = this.addShowingForm.value.title;
 
     const newShowing = {
       id: selectedFilm.id,
@@ -243,8 +230,8 @@ export class AddShowingComponent implements OnInit {
         ...selectedFilm.showings,
         {
           showingId: Math.floor(Math.random() * (100000000 - 10)) + 10,
-          date: this.addShowingForm.value.date,
-          hour: this.addShowingForm.value.hour,
+          date: this.addShowingForm.value.timeGroup.date,
+          hour: this.addShowingForm.value.timeGroup.hour,
           occupiedSeats: [],
           cinemaHall: this.addShowingForm.value.cinemaHall,
         },
