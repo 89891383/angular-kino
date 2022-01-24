@@ -25,8 +25,9 @@ export class EditShowingComponent implements OnInit {
   faArrowLeft = faArrowLeft;
   films = [];
   film = {};
+  showing = {};
   previousFilmTitle = '';
-  previousFilmCinemaHall = '';
+  previousFilmCinemaHallId = 0;
   cinemaHalls = [
     {
       hallId: 1,
@@ -203,13 +204,6 @@ export class EditShowingComponent implements OnInit {
       numberOfAvaibleSeats: 40,
     },
   ];
-  // film = {
-  //   id: 0,
-  //   title: '',
-  //   duration: '',
-  //   imageUrl: '',
-  //   showings: [],
-  // };
   id = '0';
 
   constructor(
@@ -253,13 +247,15 @@ export class EditShowingComponent implements OnInit {
         (showing: object) => showing['showingId'] == this.id
       );
       if (tmp) {
-        this.film = tmp;
+        this.film = film;
+        this.showing = tmp;
         foundFilm = film;
         foundShow = tmp;
       }
     });
-    //zapisuje poprzedni tytuł, żeby wiedzieć czy się zmienił
+    //zapisuje poprzedni tytuł i idSali, żeby wiedzieć czy się zmieniło
     this.previousFilmTitle = foundFilm['title'];
+    this.previousFilmCinemaHallId = foundShow['cinemaHall'].hallId;
 
     //podmieniam sale kinową ze stanu, która ma id starej sali na starą salę
     this.cinemaHalls[foundShow['cinemaHall'].hallId - 1] =
@@ -275,46 +271,103 @@ export class EditShowingComponent implements OnInit {
   }
 
   onSubmit() {
+    //SALA - warunki
+
+    //jeśli sala się nie zmieniła, to do zmiennej editedCinemaHall przypisuje starą sale
+    let editedCinemaHall = {};
+    if (
+      this.editShowingForm.value.cinemaHall['hallId'] ==
+      this.previousFilmCinemaHallId
+    ) {
+      editedCinemaHall =
+        this.cinemaHalls[this.showing['cinemaHall'].hallId - 1];
+    }
+    //jeśli się zmieniła to zmieniam jej Id, a ciało i miejsca przepisuje ze starej
+    else {
+      editedCinemaHall = this.editShowingForm.value.cinemaHall;
+      editedCinemaHall['body'] =
+        this.cinemaHalls[this.showing['cinemaHall'].hallId - 1].body;
+      editedCinemaHall['numberOfSeatsSold'] =
+        this.cinemaHalls[
+          this.showing['cinemaHall'].hallId - 1
+        ].numberOfSeatsSold;
+      editedCinemaHall['numberOfAvaibleSeats'] =
+        this.cinemaHalls[
+          this.showing['cinemaHall'].hallId - 1
+        ].numberOfAvaibleSeats;
+    }
+
+    //OBIEKT ZEDYTOWANEGO SEANSU
+
+    const editedShowing = {
+      showingId: parseInt(this.id),
+      date: this.editShowingForm.value.date,
+      hour: this.editShowingForm.value.hour,
+      occupiedSeats: this.showing['occupiedSeats'],
+      cinemaHall: editedCinemaHall,
+    };
+
+    //TYTUŁ FILMU - warunki
+
     //jeśli to ten sam film, ale zmieniła się sala/data/godzina
     if (this.editShowingForm.value.title['title'] === this.previousFilmTitle) {
-      // const newShowing = {
-      //   id: this.film["id"],
-      //   title: this.film["title"],
-      //   duration: this.film["duration"],
-      //   imageUrl: this.film["imageUrl"],
-      //   showings: [
-      //     ...selectedFilm.showings,
-      //     {
-      //       showingId: Math.floor(Math.random() * (100000000 - 10)) + 10,
-      //       date: this.addShowingForm.value.date,
-      //       hour: this.addShowingForm.value.hour,
-      //       occupiedSeats: [],
-      //       cinemaHall: this.addShowingForm.value.cinemaHall,
-      //     },
-      //   ],
-      // };
-      // console.log('tak');
-      // this.http
-      // .put(`http://localhost:4201/orders/${this.film["id"]}`, newShowing)
-      // .subscribe(() => {
-      //   this.addShowingForm.reset();
-      //   this.router.navigate(['/showings']);
-      // });
+      this.film['showings'].forEach(
+        (showing: object, showId: number, showTab: Array<object>) => {
+          if (showing['showingId'] == this.id) {
+            showTab[showId] = editedShowing;
+          }
+          return showing;
+        }
+      );
+
+      //podmieniam stary film, filmem z zedytowanym seansem
+      this.http
+        .put(`http://localhost:4201/orders/${this.film['id']}`, this.film)
+        .subscribe(() => {
+          this.editShowingForm.reset();
+          this.router.navigate(['/showings']);
+        });
     }
     //jeśli to inny film
     else {
+      //usuwam seans z poprzedniego filmu
+      this.film['showings'] = this.film['showings'].filter(
+        (showing: object) => showing['showingId'] !== parseInt(this.id)
+      );
+      //podmieniam stary film, filmem z usuniętym seansem
+      this.http
+        .put(`http://localhost:4201/orders/${this.film['id']}`, this.film)
+        .subscribe(() => {});
+
+      //dodaje do nowego, tak jak w add-showing
+      const selectedFilm = this.editShowingForm.value.title;
+
+      const updatedFilmWitheditedShowing = {
+        id: selectedFilm.id,
+        title: selectedFilm.title,
+        duration: selectedFilm.duration,
+        imageUrl: selectedFilm.imageUrl,
+        showings: [
+          ...selectedFilm.showings,
+          {
+            showingId: Math.floor(Math.random() * (100000000 - 10)) + 10,
+            date: this.editShowingForm.value.date,
+            hour: this.editShowingForm.value.hour,
+            occupiedSeats: [],
+            cinemaHall: editedCinemaHall,
+          },
+        ],
+      };
+
+      this.http
+        .put(
+          `http://localhost:4201/orders/${selectedFilm.id}`,
+          updatedFilmWitheditedShowing
+        )
+        .subscribe(() => {
+          this.editShowingForm.reset();
+          this.router.navigate(['/showings']);
+        });
     }
-    // this.http
-    //   .put(`http://localhost:4201/orders/${this.id}`, {
-    //     id: this.id,
-    //     title: this.editFilmForm.value.title,
-    //     duration: this.editFilmForm.value.duration,
-    //     imageUrl: this.editFilmForm.value.url,
-    //     showings: this.film.showings,
-    //   })
-    //   .subscribe(() => {
-    //     this.editFilmForm.reset();
-    //     this.router.navigate(['/films']);
-    //   });
   }
 }

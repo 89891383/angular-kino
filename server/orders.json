@@ -391,6 +391,134 @@
           "numberOfSeatsSold": 0,
           "numberOfAvaibleSeats": 40
         }
+      },
+      {
+        "showingId": 53781202,
+        "date": "2022-01-30",
+        "hour": "15:15",
+        "occupiedSeats": [],
+        "cinemaHall": {
+          "hallId": 2,
+          "capacity": 40,
+          "body": [
+            [
+              { "id": 1, "isActive": false },
+              { "id": 2, "isActive": false },
+              { "id": 3, "isActive": false },
+              { "id": 4, "isActive": false },
+              { "id": 5, "isActive": false },
+              { "id": 6, "isActive": false },
+              { "id": 7, "isActive": false },
+              { "id": 8, "isActive": false }
+            ],
+            [
+              { "id": 1, "isActive": false },
+              { "id": 2, "isActive": false },
+              { "id": 3, "isActive": false },
+              { "id": 4, "isActive": false },
+              { "id": 5, "isActive": false },
+              { "id": 6, "isActive": false },
+              { "id": 7, "isActive": false },
+              { "id": 8, "isActive": false }
+            ],
+            [
+              { "id": 1, "isActive": false },
+              { "id": 2, "isActive": false },
+              { "id": 3, "isActive": false },
+              { "id": 4, "isActive": false },
+              { "id": 5, "isActive": false },
+              { "id": 6, "isActive": false },
+              { "id": 7, "isActive": false },
+              { "id": 8, "isActive": false }
+            ],
+            [
+              { "id": 1, "isActive": false },
+              { "id": 2, "isActive": false },
+              { "id": 3, "isActive": false },
+              { "id": 4, "isActive": false },
+              { "id": 5, "isActive": false },
+              { "id": 6, "isActive": false },
+              { "id": 7, "isActive": false },
+              { "id": 8, "isActive": false }
+            ],
+            [
+              { "id": 1, "isActive": false },
+              { "id": 2, "isActive": false },
+              { "id": 3, "isActive": true },
+              { "id": 4, "isActive": true },
+              { "id": 5, "isActive": false },
+              { "id": 6, "isActive": false },
+              { "id": 7, "isActive": false },
+              { "id": 8, "isActive": false }
+            ]
+          ],
+          "numberOfSeatsSold": 0,
+          "numberOfAvaibleSeats": 40
+        }
+      },
+      {
+        "showingId": 65165148,
+        "date": "2022-01-30",
+        "hour": "18:18",
+        "occupiedSeats": [],
+        "cinemaHall": {
+          "hallId": 1,
+          "capacity": 40,
+          "body": [
+            [
+              { "id": 1, "isActive": false },
+              { "id": 2, "isActive": false },
+              { "id": 3, "isActive": false },
+              { "id": 4, "isActive": false },
+              { "id": 5, "isActive": false },
+              { "id": 6, "isActive": false },
+              { "id": 7, "isActive": false },
+              { "id": 8, "isActive": false }
+            ],
+            [
+              { "id": 1, "isActive": false },
+              { "id": 2, "isActive": false },
+              { "id": 3, "isActive": false },
+              { "id": 4, "isActive": false },
+              { "id": 5, "isActive": false },
+              { "id": 6, "isActive": false },
+              { "id": 7, "isActive": false },
+              { "id": 8, "isActive": false }
+            ],
+            [
+              { "id": 1, "isActive": false },
+              { "id": 2, "isActive": false },
+              { "id": 3, "isActive": false },
+              { "id": 4, "isActive": false },
+              { "id": 5, "isActive": false },
+              { "id": 6, "isActive": false },
+              { "id": 7, "isActive": false },
+              { "id": 8, "isActive": false }
+            ],
+            [
+              { "id": 1, "isActive": false },
+              { "id": 2, "isActive": false },
+              { "id": 3, "isActive": false },
+              { "id": 4, "isActive": false },
+              { "id": 5, "isActive": false },
+              { "id": 6, "isActive": false },
+              { "id": 7, "isActive": false },
+              { "id": 8, "isActive": false }
+            ],
+            [
+              { "id": 1, "isActive": false },
+              { "id": 2, "isActive": false },
+              { "id": 3, "isActive": true },
+              { "id": 4, "isActive": true },
+              { "id": 5, "isActive": false },
+              { "id": 6, "isActive": false },
+              { "id": 7, "isActive": false },
+              { "id": 8, "isActive": false }
+            ]
+          ],
+          "numberOfSeatsSold": 0,
+          "numberOfAvaibleSeats": 40
+        }
       }
     ]
   },
@@ -461,72 +589,7 @@
             ]
           ]
         }
-      },
-      {
-        "showingId": 3368878,
-        "date": "2022-01-16",
-        "hour": "19:04",
-        "occupiedSeats": [],
-        "cinemaHall": {
-          "hallId": 1,
-          "capacity": 40,
-          "body": [
-            [
-              { "id": 1, "isActive": false },
-              { "id": 2, "isActive": false },
-              { "id": 3, "isActive": false },
-              { "id": 4, "isActive": false },
-              { "id": 5, "isActive": false },
-              { "id": 6, "isActive": false },
-              { "id": 7, "isActive": false },
-              { "id": 8, "isActive": false }
-            ],
-            [
-              { "id": 1, "isActive": false },
-              { "id": 2, "isActive": false },
-              { "id": 3, "isActive": false },
-              { "id": 4, "isActive": false },
-              { "id": 5, "isActive": false },
-              { "id": 6, "isActive": false },
-              { "id": 7, "isActive": false },
-              { "id": 8, "isActive": false }
-            ],
-            [
-              { "id": 1, "isActive": false },
-              { "id": 2, "isActive": false },
-              { "id": 3, "isActive": false },
-              { "id": 4, "isActive": false },
-              { "id": 5, "isActive": false },
-              { "id": 6, "isActive": false },
-              { "id": 7, "isActive": false },
-              { "id": 8, "isActive": false }
-            ],
-            [
-              { "id": 1, "isActive": false },
-              { "id": 2, "isActive": false },
-              { "id": 3, "isActive": false },
-              { "id": 4, "isActive": false },
-              { "id": 5, "isActive": false },
-              { "id": 6, "isActive": false },
-              { "id": 7, "isActive": false },
-              { "id": 8, "isActive": false }
-            ],
-            [
-              { "id": 1, "isActive": false },
-              { "id": 2, "isActive": false },
-              { "id": 3, "isActive": true },
-              { "id": 4, "isActive": true },
-              { "id": 5, "isActive": false },
-              { "id": 6, "isActive": false },
-              { "id": 7, "isActive": false },
-              { "id": 8, "isActive": false }
-            ]
-          ],
-          "numberOfSeatsSold": 0,
-          "numberOfAvaibleSeats": 40
-        }
-      },
-      { "showingId": 37043730, "occupiedSeats": [], "cinemaHall": "" }
+      }
     ]
   },
   {
