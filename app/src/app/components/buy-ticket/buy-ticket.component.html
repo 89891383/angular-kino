@@ -5,46 +5,14 @@
     </a>
     <h2>Kup bilet / Sala 1</h2>
     <div class="cinemaHall">
-      <div class="row">
-        <button class="clicked">1</button>
-        <button class="place">2</button>
-        <button class="X">3</button>
-        <button class="place">4</button>
-        <button class="place">5</button>
+      <div *ngFor="let item of cinemaHallBody" class="row">
+        <button (click)="onClick(element)" *ngFor="let element of item" class="buttonClass"
+          [class]="element.isActive ? (element.id =='X' ? 'X': 'clicked') : 'place'" [disabled]="element.id == 'X'">
+          {{element.id}}
+        </button>
       </div>
-      <div class="row">
-        <button class="place">6</button>
-        <button class="X">7</button>
-        <button class="clicked">8</button>
-        <button class="X">9</button>
-        <button class="place">10</button>
-      </div>
-      <!-- {cinemaHall.map((row, rowNumber) => (
-        <div key={Math.random()} className="row">
-          {row.map((place, placeNumber) => {
-            return place.id === "X" ? (
-              <button
-                onClick={() => this.choosePlace(rowNumber, place)}
-                key={Math.random()}
-                className="X"
-              >
-                {place.id}
-              </button>
-            ) : (
-              <button
-                onClick={() => this.choosePlace(rowNumber, place)}
-                key={Math.random()}
-                className={place.isActive ? "clicked" : "place"}
-              >
-                {place.id}
-              </button>
-            );
-          })} </div>-->
     </div>
-    <!-- <Error
-      error={this.state.chooseError}
-      info="Musisz wybrać jakieś miejsce!"
-    /> -->
+    <app-error *ngIf="error" [errorMessage]="'Żeby kupić bilet, musisz wybrać miejsca!'"></app-error>
     <button (click)="buyTicket()">Kup bilet</button>
   </div>
 </div>
