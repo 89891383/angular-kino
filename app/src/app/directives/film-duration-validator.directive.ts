@@ -24,26 +24,3 @@ export class FilmDurationValidatorDirective implements Validator {
     return null;
   }
 }
-
-// console.log(control);
-// let duration = control.value;
-// let isValid = false;
-
-// if (dru && duration instanceof NgForm) {
-//   if (
-//     control.controls.duration.value > 0 &&
-//     control.controls.duration.value < 300
-//   ) {
-//     console.log(control);
-//     isValid = false;
-//   } else isValid = true;
-// }
-
-// if (duration > 0 && duration < 300) {
-//   console.log(control);
-//   isValid = false;
-// } else isValid = true;
-
-// return { filmDurationValidator: isValid };
-
-// return { filmDurationValidator: isValid };

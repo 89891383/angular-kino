@@ -15,7 +15,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./showing.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class ShowingComponent implements OnInit, OnChanges {
+export class ShowingComponent implements OnInit {
   @Input() data: {
     id: number;
     title: string;
@@ -56,20 +56,5 @@ export class ShowingComponent implements OnInit, OnChanges {
     this.data.showings.map((showing: object) => {
       this.showingsOfThisFilm.push(showing);
     });
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.getShowingsByDate(this.selectedDate);
-  }
-
-  getShowingsByDate(selectedDate: string) {
-    const showingsBySelectedDate = this.showingsOfThisFilm.filter(
-      (showing) => showing.date == selectedDate
-    );
-
-    if (showingsBySelectedDate.length !== 0) {
-      this.showingsOfThisFilm = showingsBySelectedDate.map((data) => data);
-      console.log(this.showingsOfThisFilm);
-    }
   }
 }

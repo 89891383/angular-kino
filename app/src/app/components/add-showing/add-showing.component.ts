@@ -193,6 +193,17 @@ export class AddShowingComponent implements OnInit {
     },
   ];
 
+  // findInvalidControls() {
+  //   const invalid = [];
+  //   const controls = this.addShowingForm.controls;
+  //   for (const name in controls) {
+  //     if (controls[name].invalid) {
+  //       invalid.push(name);
+  //     }
+  //   }
+  //   return invalid;
+  // }
+
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {

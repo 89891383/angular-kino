@@ -21,8 +21,17 @@
 }
 
 .AddShowing form input {
+  margin: 5px 0 10px;
+}
+
+.AddShowing form select {
   display: flex;
   margin: 5px 0 10px;
+}
+
+.AddShowing .timeGroup {
+  display: flex;
+  flex-direction: column;
 }
 
 .AddShowing form button {
@@ -47,4 +56,9 @@
 .AddShowing form button:hover {
   cursor: pointer;
   background-color: #061152;
+}
+
+.AddShowing form button:disabled {
+  cursor: not-allowed;
+  background-color: #394495;
 }

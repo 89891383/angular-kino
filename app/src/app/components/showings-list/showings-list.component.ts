@@ -14,6 +14,7 @@ export class ShowingsListComponent implements OnInit {
   @ViewChild('f') addShowingForm: NgForm;
   faPlusSquare = faPlusSquare;
   dataArray = [];
+  filteredDataArray = [];
   selectedDate = '';
   inputValue = '';
 
@@ -21,6 +22,24 @@ export class ShowingsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getShowings();
+
+    // let today = new Date();
+    // let year = today.getFullYear();
+    // let monthNumber = today.getMonth() + 1;
+    // let dayNumber = today.getDate();
+
+    // let month;
+    // let day;
+
+    // if (monthNumber < 10) month = '0' + monthNumber.toString();
+    // else month = monthNumber.toString();
+    // if (dayNumber < 10) day = '0' + dayNumber.toString();
+    // else day = dayNumber.toString();
+
+    // let date = year + '-' + month + '-' + day;
+    // 1;
+
+    // this.selectedDate = date;
   }
 
   getShowings() {
@@ -39,11 +58,23 @@ export class ShowingsListComponent implements OnInit {
       )
       .subscribe((dataArray) => {
         this.dataArray = dataArray;
+        // this.filteredDataArray = dataArray;
       });
   }
 
   onSelectedDate() {
     this.selectedDate = this.addShowingForm.value.date;
     this.inputValue = this.addShowingForm.value.date;
+
+    this.filteredDataArray = this.dataArray.map((element) => ({
+      ...element,
+      showings: element.showings.filter(
+        (showing) => showing.date === this.selectedDate
+      ),
+    }));
+
+    this.filteredDataArray = this.filteredDataArray.filter(
+      (element) => element.showings.length > 0
+    );
   }
 }

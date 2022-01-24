@@ -6,10 +6,16 @@
   </div>
   <form (ngSubmit)="onSelectedDate()" #f="ngForm">
     <label for="date">Data:</label>
-    <input (ngModelChange)="onSelectedDate()" type="date" name="date" ngModel #date="ngModel" />
+    <input
+      (ngModelChange)="onSelectedDate()"
+      type="date"
+      name="date"
+      ngModel
+      #date="ngModel"
+    />
   </form>
   <div class="showings">
-    <app-showing *ngFor="let item of dataArray" [data]="item" [selectedDate]="selectedDate">
+    <app-showing *ngFor="let item of filteredDataArray" [data]="item">
     </app-showing>
     <!--^to bylo w appie (onDeleteFilm)="onDeleteFilm($event)" -->
   </div>

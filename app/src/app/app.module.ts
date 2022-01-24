@@ -19,6 +19,7 @@ import { EditFilmComponent } from './components/edit-film/edit-film.component';
 import { ShowingComponent } from './components/showing/showing.component';
 import { AddShowingComponent } from './components/add-showing/add-showing.component';
 import { BuyTicketComponent } from './components/buy-ticket/buy-ticket.component';
+import { DateValidatorDirective } from './directives/date-validator.directive';
 
 const appRoutes: Routes = [
   {
@@ -70,6 +71,7 @@ const appRoutes: Routes = [
     ShowingComponent,
     AddShowingComponent,
     BuyTicketComponent,
+    DateValidatorDirective,
   ],
   imports: [
     BrowserModule,

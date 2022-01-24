@@ -6,28 +6,67 @@
     <h2>Dodaj seans:</h2>
 
     <label for="title">Film:</label>
-    <select name="title" ngModel #title="ngModel">
+    <select name="title" required ngModel #title="ngModel">
       <option value="" disabled>Wybierz film</option>
       <option *ngFor="let film of films" [ngValue]="film">
         {{ film.title }}
       </option>
     </select>
+    <app-error
+      *ngIf="!title.valid && title.touched && title.errors.required"
+      [errorMessage]="'Wybierz film aby dodać seans!'"
+    ></app-error>
 
     <label for="cinemaHall">Sale:</label>
-    <select name="cinemaHall" ngModel #cinemaHall="ngModel">
+    <select name="cinemaHall" ngModel #cinemaHall="ngModel" required>
       <option value="" disabled>Wybierz salę</option>
       <option *ngFor="let cinemaHall of cinemaHalls" [ngValue]="cinemaHall">
         {{ cinemaHall.hallId }}
       </option>
     </select>
+    <app-error
+      *ngIf="
+        !cinemaHall.valid && cinemaHall.touched && cinemaHall.errors.required
+      "
+      [errorMessage]="'Wybierz salę aby dodać seans!'"
+    ></app-error>
 
-    <label for="date">Data:</label>
-    <input type="date" name="date" ngModel required #date="ngModel" />
+    <div
+      class="timeGroup"
+      ngModelGroup="timeGroup"
+      #time="ngModelGroup"
+      appDateValidator
+    >
+      <label for="date">Data:</label>
+      <input type="date" name="date" ngModel #date="ngModel" required />
+      <app-error
+        *ngIf="!date.valid && date.touched && date.errors.required"
+        [errorMessage]="'Wybierz datę aby dodać seans!'"
+      ></app-error>
+      <app-error
+        *ngIf="!date.valid && date.touched && date.errors?.dateValidator"
+        [errorMessage]="'Nie można wybrać daty z przeszłości!'"
+      ></app-error>
 
-    <label for="hour">Godzina:</label>
-    <input type="time" name="hour" ngModel required #hour="ngModel" />
-
+      <label for="hour">Godzina:</label>
+      <input
+        type="time"
+        name="hour"
+        appHourValidator
+        ngModel
+        required
+        #hour="ngModel"
+      />
+      <app-error
+        *ngIf="!hour.valid && hour.touched && hour.errors.required"
+        [errorMessage]="'Wybierz godzinę aby dodać seans!'"
+      ></app-error>
+    </div>
+    <app-error
+      *ngIf="time.errors?.appDateValidator"
+      [errorMessage]="'Nie można wybrać daty z przeszłości!'"
+    ></app-error>
     <button type="submit" [disabled]="!f.valid">Dodaj</button>
-
+    <!-- <button (click)="findInvalidControls()">Sprawdź</button> -->
   </form>
 </div>
