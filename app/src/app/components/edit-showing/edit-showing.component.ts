@@ -332,23 +332,28 @@ export class EditShowingComponent implements OnInit {
     }
     //jeśli to inny film
     else {
-      console.log(this.film['showings']);
       //usuwam seans z poprzedniego filmu
-      this.film['showings'] = this.film['showings'].filter(
-        (showing: object) =>
-          parseInt(showing['showingId']) !== parseInt(this.id)
-      );
-      console.log(this.film['showings']);
+      const newOldFilm = {
+        id: this.film['id'],
+        title: this.film['title'],
+        duration: this.film['duration'],
+        imageUrl: this.film['imageUrl'],
+        showings: this.film['showings'].filter(
+          (showing: object) =>
+            parseInt(showing['showingId']) !== parseInt(this.id)
+        ),
+      };
+
       //podmieniam stary film, filmem z usuniętym seansem
       this.http
-        .put(`http://localhost:4201/orders/${this.film['id']}`, this.film)
-        .subscribe(() => {});
-
-      console.log(this.film);
+        .put(`http://localhost:4201/orders/${this.film['id']}`, newOldFilm)
+        .subscribe(() => {
+          console.log('usunięte');
+        });
 
       //dodaje do nowego, tak jak w add-showing
       const selectedFilm = this.editShowingForm.value.title;
-      console.log(selectedFilm);
+
       const updatedFilmWitheditedShowing = {
         id: parseInt(selectedFilm.id),
         title: selectedFilm.title,
@@ -356,7 +361,6 @@ export class EditShowingComponent implements OnInit {
         imageUrl: selectedFilm.imageUrl,
         showings: [...selectedFilm.showings, editedShowing],
       };
-      console.log(updatedFilmWitheditedShowing);
 
       this.http
         .put(
