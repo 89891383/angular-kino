@@ -56,16 +56,40 @@ export class CheckoutComponent implements OnInit {
     this.addShowingForm.setValue({
       date: stringToday,
     });
-    this.onSelectedDate();
 
-    let hour = '18:46';
-    let a = hour.split(':');
-    let hourMiliseconds = (+a[0] - 1) * 3600 * 1000 + +a[1] * 60 * 1000;
+    this.selectedDate = this.addShowingForm.value.date;
+
+    this.filteredDataArray = this.dataArray.map((element) => ({
+      ...element,
+      showings: element.showings.filter(
+        (showing) => showing.date === this.selectedDate
+      ),
+    }));
+
+    this.filteredDataArray = this.filteredDataArray.filter(
+      (element) => element.showings.length > 0
+    );
+
     let dateMiliseconds = Date.parse(stringToday);
-    let time = new Date(hourMiliseconds + dateMiliseconds);
-    console.log(Number(today));
-    console.log(Number(time));
-    if (Number(today) <= Number(time)) console.log('TAK');
+    let hourMilisecondsIn = 0;
+    let b: any;
+    let time2: Date;
+
+    this.filteredDataArray = this.filteredDataArray.map((element) => {
+      element.showings = element.showings.filter((el) => {
+        b = el.hour.split(':');
+        hourMilisecondsIn = (+b[0] - 1) * 3600 * 1000 + +b[1] * 60 * 1000;
+        time2 = new Date(hourMilisecondsIn + dateMiliseconds);
+
+        if (Number(today) <= Number(time2)) return true;
+        else return false;
+      });
+      return element;
+    });
+
+    this.filteredDataArray = this.filteredDataArray.filter(
+      (element) => element.showings.length > 0
+    );
   }
 
   onSelectedDate() {
