@@ -1,0 +1,50 @@
+.EditShowing {
+  display: flex;
+  justify-content: center;
+}
+
+.EditShowing > form {
+  margin: 100px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  padding: 25px 40px;
+  background-color: #eee;
+  box-shadow: 3px 3px 10px #666;
+  border-radius: 10px;
+}
+
+.EditShowing form > a {
+  color: black;
+  font-size: 30px;
+}
+
+.EditShowing h2 {
+  text-align: center;
+  padding: 0 0 30px;
+}
+
+.EditShowing form input {
+  display: flex;
+  margin: 5px 0 10px;
+}
+
+.EditShowing form button {
+  border-radius: 10px;
+  margin: 10px 0;
+  width: 100%;
+  background-color: #172263;
+  font-size: 18px;
+  width: 100%;
+  color: white;
+  text-decoration: none;
+  letter-spacing: 1px;
+  padding: 10px 10px;
+  text-align: center;
+}
+
+.EditShowing form button:hover {
+  cursor: pointer;
+  background-color: #061152;
+}

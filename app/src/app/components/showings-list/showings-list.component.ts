@@ -58,13 +58,12 @@ export class ShowingsListComponent implements OnInit {
       )
       .subscribe((dataArray) => {
         this.dataArray = dataArray;
-        // this.filteredDataArray = dataArray;
+        //this.filteredDataArray = dataArray;
       });
   }
 
   onSelectedDate() {
     this.selectedDate = this.addShowingForm.value.date;
-    this.inputValue = this.addShowingForm.value.date;
 
     this.filteredDataArray = this.dataArray.map((element) => ({
       ...element,

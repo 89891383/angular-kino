@@ -1,0 +1,36 @@
+<div class="EditShowing">
+  <form (ngSubmit)="onSubmit()" #f="ngForm">
+    <a routerLink="/showings">
+      <fa-icon [icon]="faArrowLeft"></fa-icon>
+    </a>
+    <h2>Edytuj seans:</h2>
+    <label for="title">Film:</label>
+    <select name="title" ngModel #title="ngModel" required>
+      <option value="" disabled>Wybierz film</option>
+      <option *ngFor="let film of films" [ngValue]="film">
+        {{ film.title }}
+      </option>
+    </select>
+    <label for="cinemaHall">Sale:</label>
+    <select name="cinemaHall" ngModel #cinemaHall="ngModel" required>
+      <option value="" disabled>Wybierz salę</option>
+      <option *ngFor="let cinemaHall of cinemaHalls" [ngValue]="cinemaHall">
+        {{ cinemaHall.hallId }}
+      </option>
+    </select>
+    <label for="date">Data:</label>
+    <input type="date" name="date" ngModel #date="ngModel" required />
+    <label for="hour">Godzina:</label>
+    <input type="time" name="hour" appHourValidator ngModel required #hour="ngModel" />
+    <!-- <Error error={emptyTitleField} info="Pole tytuł nie może być puste!" />
+    <Error error={invalidFilmName} info="Nie ma takiego filmu!" />
+    <Error error={emptyCinemaHallField} info="Pole sala nie może być puste!" />
+    <Error error={invalidCinemaHallNumber} info="Nie ma takiej sali!" />
+    <Error error={emptyDateField} info="Pole data nie może być puste!" />
+    <Error error={invalidDate} info="Niepoprawna data!" />
+    <Error error={emptyTimeField} info="Pole godzina nie może być puste!" />
+    <Error error={invalidTime} info="Niepoprawna godzina!" /> -->
+    <button type="submit" [disabled]="!f.valid">Edytuj</button>
+  </form>
+
+</div>

@@ -21,12 +21,8 @@ export class ShowingComponent implements OnInit {
     title: string;
     duration: string;
     imageUrl: string;
-    showings: any;
+    showings: Array<object>;
   };
-
-  @Input() selectedDate: string;
-
-  @Input() someInput: string;
 
   constructor(private http: HttpClient) {}
 
@@ -49,6 +45,7 @@ export class ShowingComponent implements OnInit {
       title: this.data.title,
       duration: this.data.duration,
       imageUrl: this.data.imageUrl,
+      showings: this.data.showings,
     };
   }
 

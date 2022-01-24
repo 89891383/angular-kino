@@ -20,6 +20,7 @@ import { ShowingComponent } from './components/showing/showing.component';
 import { AddShowingComponent } from './components/add-showing/add-showing.component';
 import { BuyTicketComponent } from './components/buy-ticket/buy-ticket.component';
 import { DateValidatorDirective } from './directives/date-validator.directive';
+import { EditShowingComponent } from './components/edit-showing/edit-showing.component';
 
 const appRoutes: Routes = [
   {
@@ -33,6 +34,10 @@ const appRoutes: Routes = [
   {
     path: 'addShowing',
     component: AddShowingComponent,
+  },
+  {
+    path: 'editShowing/:id',
+    component: EditShowingComponent,
   },
   {
     path: 'films',
@@ -72,6 +77,7 @@ const appRoutes: Routes = [
     AddShowingComponent,
     BuyTicketComponent,
     DateValidatorDirective,
+    EditShowingComponent,
   ],
   imports: [
     BrowserModule,
