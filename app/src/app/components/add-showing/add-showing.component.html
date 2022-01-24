@@ -43,30 +43,18 @@
         *ngIf="!date.valid && date.touched && date.errors.required"
         [errorMessage]="'Wybierz datę aby dodać seans!'"
       ></app-error>
-      <app-error
-        *ngIf="!date.valid && date.touched && date.errors?.dateValidator"
-        [errorMessage]="'Nie można wybrać daty z przeszłości!'"
-      ></app-error>
 
       <label for="hour">Godzina:</label>
-      <input
-        type="time"
-        name="hour"
-        appHourValidator
-        ngModel
-        required
-        #hour="ngModel"
-      />
+      <input type="time" name="hour" ngModel required #hour="ngModel" />
       <app-error
         *ngIf="!hour.valid && hour.touched && hour.errors.required"
         [errorMessage]="'Wybierz godzinę aby dodać seans!'"
       ></app-error>
     </div>
     <app-error
-      *ngIf="time.errors?.appDateValidator"
+      *ngIf="time.errors?.timeValidator"
       [errorMessage]="'Nie można wybrać daty z przeszłości!'"
     ></app-error>
     <button type="submit" [disabled]="!f.valid">Dodaj</button>
-    <!-- <button (click)="findInvalidControls()">Sprawdź</button> -->
   </form>
 </div>

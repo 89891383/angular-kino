@@ -71,11 +71,13 @@ export class DateValidatorDirective implements Validator {
           new Date(date).getTime()
         ) {
           isValid = false;
-        } else isValid = true;
+        } else {
+          isValid = true;
+        }
       }
 
-      if (!isValid) return { appDateValidator: true };
-      else return { appDateValidator: false };
+      if (!isValid) return { timeValidator: true };
+      else return null;
     }
   }
 }
