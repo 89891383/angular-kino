@@ -3,6 +3,11 @@
   justify-content: center;
 }
 
+.EditShowing .timeGroup {
+  display: flex;
+  flex-direction: column;
+}
+
 .EditShowing > form {
   margin: 100px 0;
   display: flex;
@@ -30,6 +35,10 @@
   margin: 5px 0 10px;
 }
 
+.EditShowing form select {
+  margin: 5px 0 10px;
+}
+
 .EditShowing form button {
   border-radius: 10px;
   margin: 10px 0;
@@ -47,4 +56,9 @@
 .EditShowing form button:hover {
   cursor: pointer;
   background-color: #061152;
+}
+
+.EditShowing form button:disabled {
+  cursor: not-allowed;
+  background-color: #394495;
 }
