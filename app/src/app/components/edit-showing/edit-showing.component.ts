@@ -244,7 +244,7 @@ export class EditShowingComponent implements OnInit {
 
     this.films.map((film) => {
       const tmp = film.showings.find(
-        (showing: object) => showing['showingId'] == this.id
+        (showing: object) => parseInt(showing['showingId']) == parseInt(this.id)
       );
       if (tmp) {
         this.film = film;
@@ -313,7 +313,7 @@ export class EditShowingComponent implements OnInit {
     if (this.editShowingForm.value.title['title'] === this.previousFilmTitle) {
       this.film['showings'].forEach(
         (showing: object, showId: number, showTab: Array<object>) => {
-          if (showing['showingId'] == this.id) {
+          if (parseInt(showing['showingId']) == parseInt(this.id)) {
             showTab[showId] = editedShowing;
           }
           return showing;
@@ -330,34 +330,31 @@ export class EditShowingComponent implements OnInit {
     }
     //jeśli to inny film
     else {
+      console.log(this.film['showings']);
       //usuwam seans z poprzedniego filmu
       this.film['showings'] = this.film['showings'].filter(
-        (showing: object) => showing['showingId'] !== parseInt(this.id)
+        (showing: object) =>
+          parseInt(showing['showingId']) !== parseInt(this.id)
       );
+      console.log(this.film['showings']);
       //podmieniam stary film, filmem z usuniętym seansem
       this.http
         .put(`http://localhost:4201/orders/${this.film['id']}`, this.film)
         .subscribe(() => {});
 
+      console.log(this.film);
+
       //dodaje do nowego, tak jak w add-showing
       const selectedFilm = this.editShowingForm.value.title;
-
+      console.log(selectedFilm);
       const updatedFilmWitheditedShowing = {
-        id: selectedFilm.id,
+        id: parseInt(selectedFilm.id),
         title: selectedFilm.title,
         duration: selectedFilm.duration,
         imageUrl: selectedFilm.imageUrl,
-        showings: [
-          ...selectedFilm.showings,
-          {
-            showingId: Math.floor(Math.random() * (100000000 - 10)) + 10,
-            date: this.editShowingForm.value.date,
-            hour: this.editShowingForm.value.hour,
-            occupiedSeats: [],
-            cinemaHall: editedCinemaHall,
-          },
-        ],
+        showings: [...selectedFilm.showings, editedShowing],
       };
+      console.log(updatedFilmWitheditedShowing);
 
       this.http
         .put(

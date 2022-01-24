@@ -36,7 +36,7 @@ export class ShowingComponent implements OnInit {
 
   getFilm() {
     this.data.showings.map((showing: object) => {
-      if (showing['id'] === this.data.id) {
+      if (parseInt(showing['id']) === this.data.id) {
         this.showingsOfThisFilm.push(showing);
       }
     });
