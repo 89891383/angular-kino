@@ -1,1 +1,9 @@
-<p>checkout works!</p>
+<div class="Checkout">
+  <form class="dateForm" (ngSubmit)="onSelectedDate()" #f="ngForm">
+    <input (ngModelChange)="onSelectedDate()" type="date" name="date" ngModel #date="ngModel" />
+  </form>
+  <div class="showings">
+    <app-showing *ngFor="let item of filteredDataArray" [data]="item">
+    </app-showing>
+  </div>
+</div>
