@@ -265,8 +265,10 @@ export class EditShowingComponent implements OnInit {
     this.editShowingForm.form.setValue({
       title: foundFilm,
       cinemaHall: this.cinemaHalls[foundShow['cinemaHall'].hallId - 1],
-      date: foundShow['date'],
-      hour: foundShow['hour'],
+      timeGroup: {
+        date: foundShow['date'],
+        hour: foundShow['hour'],
+      },
     });
   }
 
@@ -301,8 +303,8 @@ export class EditShowingComponent implements OnInit {
 
     const editedShowing = {
       showingId: parseInt(this.id),
-      date: this.editShowingForm.value.date,
-      hour: this.editShowingForm.value.hour,
+      date: this.editShowingForm.value.timeGroup.date,
+      hour: this.editShowingForm.value.timeGroup.hour,
       occupiedSeats: this.showing['occupiedSeats'],
       cinemaHall: editedCinemaHall,
     };

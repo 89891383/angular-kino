@@ -18,19 +18,31 @@
         {{ cinemaHall.hallId }}
       </option>
     </select>
-    <label for="date">Data:</label>
-    <input type="date" name="date" ngModel #date="ngModel" required />
-    <label for="hour">Godzina:</label>
-    <input type="time" name="hour" appHourValidator ngModel required #hour="ngModel" />
-    <!-- <Error error={emptyTitleField} info="Pole tytuł nie może być puste!" />
-    <Error error={invalidFilmName} info="Nie ma takiego filmu!" />
-    <Error error={emptyCinemaHallField} info="Pole sala nie może być puste!" />
-    <Error error={invalidCinemaHallNumber} info="Nie ma takiej sali!" />
-    <Error error={emptyDateField} info="Pole data nie może być puste!" />
-    <Error error={invalidDate} info="Niepoprawna data!" />
-    <Error error={emptyTimeField} info="Pole godzina nie może być puste!" />
-    <Error error={invalidTime} info="Niepoprawna godzina!" /> -->
+
+    <div
+      class="timeGroup"
+      ngModelGroup="timeGroup"
+      #time="ngModelGroup"
+      appDateValidator
+    >
+      <label for="date">Data:</label>
+      <input type="date" name="date" ngModel #date="ngModel" required />
+      <app-error
+        *ngIf="!date.valid && date.touched && date.errors.required"
+        [errorMessage]="'Wybierz datę aby dodać seans!'"
+      ></app-error>
+      <label for="hour">Godzina:</label>
+      <input type="time" name="hour" ngModel required #hour="ngModel" />
+      <app-error
+        *ngIf="!hour.valid && hour.touched && hour.errors.required"
+        [errorMessage]="'Wybierz godzinę aby dodać seans!'"
+      ></app-error>
+    </div>
+    <app-error
+      *ngIf="time.errors?.timeValidator"
+      [errorMessage]="'Nie można wybrać daty z przeszłości!'"
+    ></app-error>
+
     <button type="submit" [disabled]="!f.valid">Edytuj</button>
   </form>
-
 </div>
