@@ -13,6 +13,7 @@ import { NgForm } from '@angular/forms';
 export class CheckoutComponent implements OnInit {
   @ViewChild('f') addShowingForm: NgForm;
   faPlusSquare = faPlusSquare;
+  from = 'checkout';
   dataArray = [];
   filteredDataArray = [];
   selectedDate = '';

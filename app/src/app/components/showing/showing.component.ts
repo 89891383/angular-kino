@@ -23,6 +23,7 @@ export class ShowingComponent implements OnInit {
     imageUrl: string;
     showings: Array<object>;
   };
+  @Input() from: string;
 
   constructor(private http: HttpClient) {}
 
@@ -33,6 +34,8 @@ export class ShowingComponent implements OnInit {
 
   film = {};
   showingsOfThisFilm = [];
+  showingList = 'showingList';
+  checkout = 'checkout';
 
   getFilm() {
     this.data.showings.map((showing: object) => {

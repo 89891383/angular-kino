@@ -9,7 +9,7 @@
     <input (ngModelChange)="onSelectedDate()" type="date" name="date" ngModel #date="ngModel" />
   </form>
   <div class="showings">
-    <app-showing *ngFor="let item of filteredDataArray" [data]="item">
+    <app-showing *ngFor="let item of filteredDataArray" [data]="item" [from]="from">
     </app-showing>
   </div>
 </div>

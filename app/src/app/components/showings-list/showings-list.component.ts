@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  ViewChild,
+  Output,
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
@@ -13,6 +19,7 @@ import { NgForm } from '@angular/forms';
 export class ShowingsListComponent implements OnInit {
   @ViewChild('f') addShowingForm: NgForm;
   faPlusSquare = faPlusSquare;
+  from = 'showingList';
   dataArray = [];
   filteredDataArray = [];
   selectedDate = '';
